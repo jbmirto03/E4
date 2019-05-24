@@ -20,27 +20,30 @@ Sorted data: 22 50 100 101 200
 
 using namespace std;
 
-void swapping(int &x, int &y)	{	// Function responsible for swapping variables a and b
-	int temp;	// Temporary storage for value
-	temp = x;
-	x = y;
-	y = temp;
-}
-
-void display(int *array, int size)	{	// Function responsible for 
+void display(int *array, int size)	{	// Function responsible for displaying the array
 	for(int a = 0; a < size; a++)	{
 		cout << array[a] << " ";
 	}
 }
 
 void selectionSort(int *array, int size)	{	// Function responsible for selection sorting
-	int a, b, minimum;
-	for(int a = 0; a < size - a; a++)	{ // Loop responsible 
-		minimum = a;	// Get index of minimum data
-		for(int b = a + 1; b < size; b++)
-			if(array[b] < array[minimum])
-			minimum = b;
-		swap(array[a], array[minimum]);	// Swaps the value of the two parameters
+	
+	int a, b, minimum, temp;
+	
+	for(a = 0; a < size - 1; a++)	{
+		minimum = a;	// Gets index of the minimum data
+		
+		for(b = a + 1; b < size; b++)	{
+			if(array[b] < array[minimum])	{
+				minimum = b;
+			}
+		}
+		
+		if (minimum != a)	{
+			temp = array[a];
+			array[a] = array[minimum];
+			array[minimum] = temp;
+		}
 	}
 }
 
@@ -57,7 +60,7 @@ int main()	// Function for the main process
 	cout << "Enter the " << number << " elements: \n" << endl;
 	
 	for(int a = 0; a < number; a++)	{	// Loop for storing values in the the array
-      cin >> arr[a];
+    	cin >> arr[a];
 	}
    
 	cout << "\nYour data: ";
