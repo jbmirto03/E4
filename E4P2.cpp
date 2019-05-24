@@ -1,12 +1,17 @@
 /*****************************************************************************************************
 PROBLEM 2: Create a C++ functional program that sorts n number of elements using either selection or
 bubble sort.
+
 Selection Sorting…
+
 Enter the array size: 5
 Enter the 5 elements:
 100 50 22 101 200
+
 Your data: 100 50 22 101 200
+
 After using selection or bubble sort…
+
 Sorted data: 22 50 100 101 200
 *****************************************************************************************************/
 
@@ -15,100 +20,54 @@ Sorted data: 22 50 100 101 200
 
 using namespace std;
 
-void swapping(int &a, int &b) {         //swap the content of a and b
-   int temp;
-   temp = a;
-   a = b;
-   b = temp;
+void swapping(int &x, int &y)	{	// Function responsible for swapping variables a and b
+	int temp;	// Temporary storage for value
+	temp = x;
+	x = y;
+	y = temp;
 }
 
-void display(int *array, int size) {
-   for(int i = 0; i < size; i++)
-      cout << array[i] << " ";
-   cout << endl;
+void display(int *array, int size)	{	// Function responsible for 
+	for(int a = 0; a < size; a++)	{
+		cout << array[a] << " ";
+	}
 }
 
-void selectionSort(int *array, int size) {
-   int i, j, imin;
-   for(i = 0; i<size-1; i++) {
-      imin = i;   //get index of minimum data
-      for(j = i+1; j<size; j++)
-         if(array[j] < array[imin])
-            imin = j;
-         //placing in correct position
-         swap(array[i], array[imin]);
-   }
+void selectionSort(int *array, int size)	{	// Function responsible for selection sorting
+	int a, b, minimum;
+	for(int a = 0; a < size - a; a++)	{ // Loop responsible 
+		minimum = a;	// Get index of minimum data
+		for(int b = a + 1; b < size; b++)
+			if(array[b] < array[minimum])
+			minimum = b;
+		swap(array[a], array[minimum]);	// Swaps the value of the two parameters
+	}
 }
 
-int main() {
-   int n;
-   cout << "Enter the number of elements: ";
-   cin >> n;
-   
-   int arr[n];           //create an array with given number of elements
-   cout << "Enter elements:" << endl;
-   for(int i = 0; i < n; i++) {
-      cin >> arr[i];
-   }
-   
-   cout << "Array before Sorting: ";
-   display(arr, n);
-   
-   selectionSort(arr, n);
-   cout << "Array after Sorting: ";
-   
-   display(arr, n);
-}
-
-/*
-#include <iostream>
-#include <conio.h>
-#include <string>
-
-using namespace std;
-
-void bubble() {
-	
-}
-
-int main()
+int main()	// Function for the main process
 {
-	string arr[5], temp;
-	char a, b;
-	int s;
+	int number;
 	
-	cout << "Selection Sorting\.\.\. \n"
-		 << "Enter array size : ";	cin >> s;
-		 	
-	cout << "Enter the " << s << " elements : ";
+	cout << "Selection sorting...\n" << endl
+		 << "Enter the array size: ";
+	cin >> number;
+   
+	int arr[number];	// Creates an integer array with the inputted n number of elements as array size
 	
-	for(a = 0; a < s; a++)	{
-		cin >> arr[a];
+	cout << "Enter the " << number << " elements: \n" << endl;
+	
+	for(int a = 0; a < number; a++)	{	// Loop for storing values in the the array
+      cin >> arr[a];
 	}
-
-	cout << "Your data: ";
+   
+	cout << "\nYour data: ";
+	display(arr, number);	// Calls the function labeled "display" to run the process defined inside it
+   
+	selectionSort(arr, number);	// Calls the function labeled "selectionSort" to sort the input using the technique said
 	
-	for(a = 0; a < s; a++)	{
-		cout << arr[a] << ' ';
-	}
-
-	for (a = 0; a < s; a++)	{
-		for (b = a + 1; b < s; b++)	{
-			if (arr[a]>arr[b])	{
-				temp = arr[a];
-				arr[a] = arr[b];
-				arr[b] = temp;
-			}
-		}
-	}
+	cout << "\n\nAfter using selection or bubble sort...\n\n" << "Sorted data: ";
+	display(arr, number);	// Calls the function labeled "display," this time with sorted data thanks to the last called function
 	
-	cout << "\nAfter using selection or bubble sort\.\.\.\n";
-	
-	cout << "Sorted data : ";
-	for(a = 0; a < s; a++)	{
-		cout << arr[a] << " ";
-	}
-	
-	getch();
+	_getch();
 	return 0;
-}*/
+}
